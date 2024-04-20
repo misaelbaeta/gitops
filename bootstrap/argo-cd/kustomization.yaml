@@ -1,11 +1,41 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 namespace: argocd
+components:
+  - https://github.com/argoproj-labs/argocd-extensions/manifests
 resources:
-- github.com/argoproj-labs/argocd-autopilot/manifests/base?ref=v0.4.17
-
+  - github.com/argoproj-labs/argocd-autopilot/manifests/base?ref=v0.4.17
+  - https://raw.githubusercontent.com/argoproj-labs/rollout-extension/v0.3.3/manifests/install.yaml
+patches:
+  - patch: |-
+      apiVersion: v1
+      kind: Secret
+      type: Opaque
+      metadata:
+        name: argocd-notifications-secret
+        annotations:
+          sealedsecrets.bitnami.com/managed: "true"
+  - path: argocd-server.yaml
+  - path: argocd-notifications-cm.yaml
 configMapGenerator:
-- behavior: merge
-  literals:
-    - repository.credentials: "- passwordSecret: git_token\n  url: https://github.com/\n  usernameSecret: git_username\n  name: autopilot-secret\n  admin.enabled: \"true\"\n  kustomize.buildOptions: \"--enable-alpha-plugins --enable-helm --load-restrictor LoadRestrictionsNone\""
-  name: argocd-cm
+  - behavior: merge
+    literals:
+      - server.insecure="true"
+      - dexserver.disable.tls="true"
+      - server.dex.server="http://argocd-dex-server:5556"
+      - server.dex.server.strict.tls="false"
+    name: argocd-cmd-params-cm
+  - behavior: merge
+    files:
+      - files/dex.config
+      - files/repositories
+      - files/repository.credentials
+      - files/resource.customizations
+    literals:
+      - admin.enabled=true
+      - kustomize.buildOptions="--enable-alpha-plugins --enable-helm --load-restrictor
+        LoadRestrictionsNone"
+    name: argocd-cm
+    options:
+      labels:
+        app.kubernetes.io/part-of: argocd
