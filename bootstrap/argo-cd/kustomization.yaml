@@ -8,16 +8,6 @@ resources:
   - https://raw.githubusercontent.com/argoproj-labs/rollout-extension/v0.3.3/manifests/install.yaml
 patches:
   - target:
-      kind: Secret
-      name: argocd-notifications-secret
-    patch: |-
-      apiVersion: v1
-      kind: Secret
-      metadata:
-        annotations:
-          sealedsecrets.bitnami.com/managed: "true"
-        name: argocd-notifications-secret
-  - target:
       kind: ConfigMap
       name: argocd-server-cm
     patch: |-
@@ -28,13 +18,6 @@ patches:
       data:
         key: value
 configMapGenerator:
-  - behavior: merge
-    literals:
-      - server.insecure="true"
-      - dexserver.disable.tls="true"
-      - server.dex.server="http://argocd-dex-server:5556"
-      - server.dex.server.strict.tls="false"
-    name: argocd-cmd-params-cm
   - behavior: merge
     literals:
       - admin.enabled=true
