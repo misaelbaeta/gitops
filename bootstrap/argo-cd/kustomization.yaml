@@ -10,7 +10,6 @@ patches:
   - target:
       kind: Secret
       name: argocd-notifications-secret
-      type: Opaque
     patch: |-
       apiVersion: v1
       kind: Secret
