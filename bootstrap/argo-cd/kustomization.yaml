@@ -7,15 +7,10 @@ resources:
 configMapGenerator:
 - behavior: merge
   literals:
-  - |
-    repository.credentials=- passwordSecret:
-        key: git_token
-        name: autopilot-secret
+  - repository.credentials=- passwordSecret: git_token
       url: https://github.com/
-      usernameSecret:
-        key: git_username
-        name: autopilot-secret
-        admin.enabled=true
-        kustomize.buildOptions="--enable-alpha-plugins --enable-helm --load-restrictor
-        LoadRestrictionsNone"
-    name: argocd-cm
+      usernameSecret: git_username
+      name: autopilot-secret
+      admin.enabled: "true"
+      kustomize.buildOptions: "--enable-alpha-plugins --enable-helm --load-restrictor LoadRestrictionsNone"
+  name: argocd-cm
