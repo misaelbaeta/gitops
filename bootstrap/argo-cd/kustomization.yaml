@@ -26,11 +26,6 @@ configMapGenerator:
       - server.dex.server.strict.tls="false"
     name: argocd-cmd-params-cm
   - behavior: merge
-    files:
-      - files/dex.config
-      - files/repositories
-      - files/repository.credentials
-      - files/resource.customizations
     literals:
       - admin.enabled=true
       - kustomize.buildOptions="--enable-alpha-plugins --enable-helm --load-restrictor
