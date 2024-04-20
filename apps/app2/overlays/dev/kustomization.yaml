@@ -6,7 +6,7 @@ resources:
 commonLabels:
   app: app2
 helmCharts:
-  - name: app1
+  - name: app2
     releaseName: hello-world
     version: 0.2.0
     repo: https://ayazuddin007.github.io/Helm3/
