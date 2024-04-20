@@ -1,14 +1,14 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: app1
+namespace: app2
 resources:
   - ../../base
 commonLabels:
-  app: app1
+  app: app2
 helmCharts:
   - name: app1
     releaseName: hello-world
     version: 0.2.0
     repo: https://ayazuddin007.github.io/Helm3/
     valuesInline:
-      name: app1
+      name: app2

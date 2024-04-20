@@ -1,9 +1,9 @@
 {
-    "appName": "app1",
-    "userGivenName": "app1",
-    "destNamespace": "app1",
+    "appName": "app2",
+    "userGivenName": "app2",
+    "destNamespace": "app2",
     "destServer": "https://kubernetes.default.svc",
-    "srcPath": "apps/app1/overlays/prd",
+    "srcPath": "apps/app2/overlays/prd",
     "srcRepoURL": "https://github.com/misaelbaeta/gitops.git",
     "srcTargetRevision": "",
     "CreateNamespace": true,
