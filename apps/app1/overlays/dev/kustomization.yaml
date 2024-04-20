@@ -6,7 +6,7 @@ resources:
 commonLabels:
   app: app1
 helmCharts:
-  - name: app1
+  - name: trusted-profile-analyzer
     releaseName: trusted-profile-analyzer
     version: 0.0.1-TP1
     repo: https://charts.openshift.io/
