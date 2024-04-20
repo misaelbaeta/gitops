@@ -7,8 +7,8 @@ commonLabels:
   app: app1
 helmCharts:
   - name: app1
-    releaseName: hello-world
-    version: 0.2.0
-    repo: https://ayazuddin007.github.io/Helm3/
+    releaseName: trusted-profile-analyzer
+    version: 0.0.1-TP1
+    repo: https://charts.openshift.io/
     valuesInline:
       name: app1
