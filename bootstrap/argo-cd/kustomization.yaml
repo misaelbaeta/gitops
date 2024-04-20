@@ -21,10 +21,7 @@ configMapGenerator:
   - behavior: merge
     literals:
       - admin.enabled=true
-      - kustomize.buildOptions: |-
-          --enable-alpha-plugins
-          --enable-helm
-          --load-restrictor LoadRestrictionsNone
+      - kustomize.buildOptions="--enable-alpha-plugins --enable-helm --load-restrictor LoadRestrictionsNone"
     name: argocd-cm
     options:
       labels:
