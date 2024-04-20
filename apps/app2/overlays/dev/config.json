@@ -3,7 +3,7 @@
     "userGivenName": "app2",
     "destNamespace": "app2",
     "destServer": "https://kubernetes.default.svc",
-    "srcPath": "apps/app1/overlays/dev",
+    "srcPath": "apps/app2/overlays/dev",
     "srcRepoURL": "https://github.com/misaelbaeta/gitops.git",
     "srcTargetRevision": "",
     "CreateNamespace": true,
