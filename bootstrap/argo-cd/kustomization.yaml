@@ -7,16 +7,37 @@ resources:
   - github.com/argoproj-labs/argocd-autopilot/manifests/base?ref=v0.4.17
   - https://raw.githubusercontent.com/argoproj-labs/rollout-extension/v0.3.3/manifests/install.yaml
 patches:
-  - patch: |-
+  - target:
+      kind: Secret
+      name: argocd-notifications-secret
+      type: Opaque
+    patch: |-
       apiVersion: v1
       kind: Secret
-      type: Opaque
       metadata:
-        name: argocd-notifications-secret
         annotations:
           sealedsecrets.bitnami.com/managed: "true"
-  - path: argocd-server.yaml
-  - path: argocd-notifications-cm.yaml
+        name: argocd-notifications-secret
+  - target:
+      kind: ConfigMap
+      name: argocd-server-cm
+    patch: |-
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: argocd-server-cm
+      data:
+        key: value
+  - target:
+      kind: ConfigMap
+      name: argocd-notifications-cm
+    patch: |-
+      apiVersion: v1
+      kind: ConfigMap
+      metadata:
+        name: argocd-notifications-cm
+      data:
+        key: value
 configMapGenerator:
   - behavior: merge
     literals:
@@ -28,8 +49,7 @@ configMapGenerator:
   - behavior: merge
     literals:
       - admin.enabled=true
-      - kustomize.buildOptions="--enable-alpha-plugins --enable-helm --load-restrictor
-        LoadRestrictionsNone"
+      - kustomize.buildOptions="--enable-alpha-plugins --enable-helm --load-restrictor LoadRestrictionsNone"
     name: argocd-cm
     options:
       labels:
