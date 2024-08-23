@@ -9,7 +9,7 @@ spec:
     namespace: argocd
     server: https://kubernetes.default.svc
   source:
-    path: argocd/gitops-kubernetes-bootstrap
+    path: argocd/bootstrap-resources
     repoURL: 'https://github.com/misaelbaeta/gitops.git'
     targetRevision: HEAD
   project: default
