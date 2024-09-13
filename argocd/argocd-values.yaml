@@ -1,5 +1,5 @@
 global:
-  domain: argocd.stg.protector.cropwise.com
+  domain: argocd.stg.projeto.com
   addPrometheusAnnotations: true
 
 configs:
