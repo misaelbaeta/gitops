@@ -29,10 +29,5 @@ data:
     p, role:protector-readonly, logs, get, *, allow
     p, role:protector-readonly, applications, sync, */*, allow
     
-    g, paul_pitt, role:org-admin
-    g, luiz_bonfioli, role:org-admin
-    g, diego_gonzalez, role:org-admin
-    g, dinesh_k, role:org-admin
     g, misael_oliveira, role:org-admin
-    g, daniel_resende, role:org-admin   
-    g, marina_salmen, role:org-admin   
+  
