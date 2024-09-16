@@ -7,7 +7,8 @@ spec:
   project: default
   source:
     repoURL: https://github.com/misaelbaeta/gitops.git
-    targetRevision: refs/tags/argocd-projeto-staging/latest
+    #targetRevision: refs/tags/argocd-projeto-staging/latest
+    targetRevision: head
     path: argocd-apps
     directory:
       recurse: true
